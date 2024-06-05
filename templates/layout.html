@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html lang = "en">
+<head>
+	<title>Library</title>
+	<meta name = "viewport" content = "width=device-width, initial-scale=1.0" />
+	<meta charset = "utf-8" />
+	<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" type="text/css" />
+	<link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}" type="text/css" />
+	<link rel="stylesheet" href="{{ url_for('static', filename='library.css') }}" type="text/css" />
+</head>
+<body>
+	<header>
+		<div class="logo">Personal Library</div>
+		<div class="right">
+			<a href="./">Home</a>
+			<a href="./issuedbooks">Issued Books</a>
+			<a href="./library">Library</a>
+			<a href="./members">Members</a>
+			<a href="./genres">Genres</a>
+		</div>
+	</header>
+	<br />
+<!-- flask content begins -->
+	{% block body %}{% endblock%}
+<!-- flask content ends  -->
+<br />
+<br />
+<hr />
+</body>
+</html>

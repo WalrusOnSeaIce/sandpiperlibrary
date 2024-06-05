@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+<link rel="stylesheet" href="{{ url_for('static', filename='library.css') }}" type="text/css" />
+{% block body %}
+<h2>Book List</h2>
+<section>
+  <!--<div>
+    <h3><label for="filter">Order by: </label></h3>
+    <select id="filter">
+      <option id="nofilter" default>No Filter</option>
+      <option value="author">Author</option>
+      <option value="status">Status</option>
+      <option value="genre">Genre</option>
+    </select>
+  </div>-->
+  <div>
+    <h3>Search for books</h3>
+      <form action = "/search" method = "get">
+          <input type="hidden" value="library" name="page">
+          <input class = "search" required type="search" name="title" placeholder="Query" />
+          <input class = "hsubmit" type="submit" name="submit" value="Search" />
+      </form>
+  </div>
+</section>
+
+<table>
+  <thead><tr>
+    <td>ID</td>
+    <td>Book</td>
+    <td>Author</td>
+    <td>Genre</td>
+    <td>Lent</td>
+    <td>Options</td>
+  </tr></thead>
+  <tbody>
+  {% for i in library %}
+    <tr>
+      <td>{{ i[0] }}</td>
+      <td>{{ i[1] }}</td>
+      <td>{{ i[2] }}</td>
+      <td>{{ i[3] }}</td>
+      <td>{{ i[4] }}</td>
+      <td><form action="/delete" method="post"><input name="id" type="hidden" value="{{ i[0] }}" /><input class="submit" type="submit" value="Delete" /></form>
+          <form action="/update" method="post"><input name="id" type="hidden" value="{{ i[0] }}" /><input class="submit" type="submit" value="Change status" /></form>
+          <form action="/book" method="post"><input name="id" type="hidden" value="{{ i[0] }}" /><input class="submit" type="submit" value="About Book" /></form>
+      </td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

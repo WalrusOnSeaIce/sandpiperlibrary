@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<h2>Add Genre</h2>
+<form action="/addgenre" method = "post">
+    <input required type = "text" name="genre" placeholder="Enter genre" />
+    <input class = "hsubmit" type="submit" name="submit" value = "Add" />
+</form>
+
+<h3>Genres</h3>
+<table>
+    <thead>
+        <tr>
+            <td>Serial No./ID</td>
+            <td>Genre</td>
+            <td>Options</td>
+        </tr>
+    </thead>
+    <tbody>
+        {% for i in gen %}
+        <tr>
+            <td>{{ i[0] }}</td>
+            <td>{{ i[1] }}</td>
+            <td><form action="/delgenre" method="post"><input name="id" type="hidden" value="{{ i[0] }}" /><input class="submit" type="submit" value="Delete" /></form></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

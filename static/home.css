@@ -1,0 +1,46 @@
+h2 {
+    color: #6F5B3E;
+    margin: 10px;
+    }
+input[type=text], input[type=search]{
+    width:40%;
+    border: 2px solid;
+    border-color:  #6F5B3E;
+    border-radius: 1px;
+    background-color: #F9F6F0;
+    color: #6F5B3E;
+    padding: 10px;
+    margin: 10px;
+    outline:none;
+    }
+.hsubmit{
+    padding: 10px;
+    background-color: #6F5B3E;
+    color: #F9F6F0;
+    width: 10%;
+    border: 2px solid #6F5B3E;
+    margin: 10px;
+    }
+.hsubmit:hover{
+    opacity: 0.8;
+    cursor: pointer;
+    }
+select {
+    padding: 10px 15px;
+    background-color: #F9F6F0;
+    color: #6F5B3E;
+    margin: 10px;
+    width: 10.5%;
+    }
+input[type=text]:focus, input[type=search]:focus{
+    border-color: #C4AE78 !important;
+    }
+form {
+    padding: 20px;
+}
+input[type=date], input[type=file]{
+    padding: 10px 15px;
+    background-color: #F9F6F0;
+    color: #6F5B3E;
+    margin: 10px;
+}

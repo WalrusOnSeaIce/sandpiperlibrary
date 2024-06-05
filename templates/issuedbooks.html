@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+{% block body %}
+<div>
+<h2>Issued Books</h2>
+
+<table>
+    <thead><tr>
+      <td>Book ID</td>
+      <td>Book</td>
+      <td>Member ID</td>
+      <td>Date of Issue</td>
+      <td>Expected Date Of Return</td>
+    </tr></thead>
+    <tbody>
+        {% for rec in rec %}
+        <tr>
+            <td>{{ rec[0] }}</td>
+            <td>{{ rec[1] }}</td>
+            <td>{{ rec[2] }}</td>
+            <td>{{ rec[4] }}</td>
+            <td>{{ rec[5] }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

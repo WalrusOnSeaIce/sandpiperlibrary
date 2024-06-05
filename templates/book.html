@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<h2>Information</h2>
+<section>
+    <form action="/updatebook" method="POST" style="padding: 20px;">
+        <input name="id" type="hidden" value="{{ book[0] }}">
+        <label for="id">ID: </label><span>{{ book[0] }}</span><br>
+        <label for="name">Name: </label><input name="book" type="text" value="{{ book[1] }}"><br>
+        <label for="author">Author: </label><input name="author" type="text" value="{{ book[2] }}"><br>
+        <label for="genre">Genre: </label><select name = "genre" style="width: 30% !important; margin: 10px !important;">
+			<option disabled selected>{{ book[3] }}</option>
+			{% for i in genres %}
+				<option value = "{{ i }}">{{ i }}</option>
+			{% endfor %}
+		</select><br>
+        <label for="lent">Lent: </label><span>{{ book[4] }}</span><br>
+        <label for="lentto">Lent To: </label><span>{{ x }}</span><br>
+        <label for="summary" style="margin-top: 6px;">Summary: </label><textarea style="resize: vertical;" name="summary" rows = "4" cols = "70">{{ book[5] }}</textarea><br>
+        <label for="addlinfo">Additional Information: </label><input name="addlinfo" type="text" value="{{ book[6] }}"><br>
+        <br>
+        <input type="submit" value="Update Information" style="width: 30%; background-color: #6F5B3E; color: #F9F6F0; border: 2px solid #6F5B3E; margin: 10px; padding: 10px; cursor: pointer;">
+    </form>
+    <br><br>
+</section>
+<section>
+    <form action="/update" method="post"><input name="id" type="hidden" value="{{ book[0] }}" /><input style="width: 98%; background-color: #6F5B3E; color: #F9F6F0; border: 2px solid #6F5B3E; margin: 10px; padding: 10px; cursor: pointer;" type="submit" value="Change status" /></form>
+    <br><br><br>
+    <form action="/delete" method="post"><input name="id" type="hidden" value="{{ book[0] }}" /><input style="width: 100%; background-color: #6F5B3E; color: #F9F6F0; border: 2px solid #6F5B3E; margin: 10px; padding: 10px; cursor: pointer;" type="submit" value="Delete" /></form>
+</section>
+
+{% endblock %}

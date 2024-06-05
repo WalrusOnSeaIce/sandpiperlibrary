@@ -1,0 +1,77 @@
+{% extends "layout.html" %}
+<link rel="stylesheet" href="./static/library.css" />
+{% block body %}
+<h2>Results</h2>
+{% if page == "library" %}
+<div>
+  <h3>Search for books</h3>
+    <form action = "/search" method = "get">
+      <input type="hidden" value="library" name="page">
+        <input class = "search" required type="search" name="title" placeholder="Query" />
+        <input class = "hsubmit" type="submit" name="submit" value="Search" />
+    </form>
+</div>
+<table>
+  <thead><tr>
+    <td>ID</td>
+    <td>Book</td>
+    <td>Author</td>
+    <td>Genre</td>
+    <td>Lent</td>
+    <td>Options</td>
+  </tr></thead>
+  <tbody>
+  {% for i in title %}
+    <tr>
+      <td>{{ i[0] }}</td>
+      <td>{{ i[1] }}</td>
+      <td>{{ i[2] }}</td>
+      <td>{{ i[3] }}</td>
+      <td>{{ i[4] }}</td>
+      <td><form action="/delete" method="post"><input name="id" type="hidden" value="{{ i[0] }}" /><input class="submit" type="submit" value="Delete" /></form>
+          <form action="/update" method="post"><input name="id" type="hidden" value="{{ i[0] }}" /><input class="submit" type="submit" value="Change status" /></form>
+          <form action="/book" method="post"><input name="id" type="hidden" value="{{ i[0] }}" /><input class="submit" type="submit" value="About Book" /></form>
+      </td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+
+{% elif page == "members" %}
+<div>
+  <h3>Search for books</h3>
+    <form action = "/search" method = "GET">
+      <input type="hidden" value="members" name="page">
+        <input class = "search" required type="search" name="title" placeholder="Query" />
+        <input class = "hsubmit" type="submit" name="submit" value="Search" />
+    </form>
+</div>
+<table>
+  <thead><tr>
+      <td>ID</td>
+      <td>Name</td>
+      <td>Photo</td>
+      <td>Date Of Joining</td>
+      <td>Book 1</td>
+      <td>Book 2</td>
+      <td>Options</td>
+  </tr></thead>
+  <tbody>
+  {% for i in title %}
+  <tr>
+    <td>{{ i[0] }}</td>
+    <td>{{ i[1] }}</td>
+    <td><img src = "{{ i[3] }}" height="50px" width="50px"></td>
+    <td>{{ i[2] }}</td>
+    <td>{{ i[4] }}</td>
+    <td>{{ i[5] }}</td>
+    <td><form action="/delmember" method="post"><input name="id" type="hidden" value="{{ i[0] }}" /><input class="submit" type="submit" value="Delete" /></form>
+      <form action="/member" method="post"><input name="id" type="hidden" value="{{ i[0] }}" /><input class="submit" type="submit" value="About Member" /></form>
+    </td>
+  </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endif %}
+{% endblock %}

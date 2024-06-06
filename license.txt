@@ -1,0 +1,31 @@
+                Copyright © WalrusOnSeaIce 2024. All Rights Reserved.
+
+PREAMBLE
+The terms and conditions mentioned in this document govern your use of this software. Please review the following license terms before using the software. Before using Sandpiper Library ("the software") you must agree to the license terms mentioned below. By using this software, it is assumed that you have read and understood the following license terms. The source code of the software is available on Github. Breach of the terms of this license is not permitted.
+                
+TERMS
+1. By using this software you agree to be bound the whole license and it terms. If a part of the license is incorrect, rendered invalid by a law of any place, or tampered with, the rest of the license is not rendered invalid. The rest of the license is still in force. 
+2. You agree that the rights of the software are reserved by the author(s)/ developer(s) of Sandpiper Library.
+3. Selling or/ and renting the software or its code is strictly not permitted.
+4. Adding any type of malicious, spyware, malware, trojan, virus or any other harmful code to the software, except for personal/educational purposes is not allowed. Such copies MUST NOT be available for downloading publically.
+5. If you modify and/or change and distribute the software, it is not mandatory for you to publish its source code. However, sharing the source code is encouraged. Modified versions in source or binary form must be plainly marked as such, and must not be misrepresented as being the original software.
+6. This software is licensed and not sold. This license just gives you rights to use the software. All other rights are reserved by Sandpiper Library and its author(s) and copyright holder(s).
+7. You may not distribute the executable binary of the source code of this software or the source code of this software under a name/logo/icon/license different from the name("Sandpiper Library")/logo/icon/license of this software if only minimal changes are made to the source code. The author(s) of Sandpiper Library will not be responsible for this source code or the executable binary thereof. In the case you make more than minimal changes to the source code, the created software shall be your own work and Sandpiper Library or its author(s) are not responsible for any part or whole of this software. You are free to distribute the software you have created under any license or no license at all.
+
+YOUR RIGHTS
+1. The source code of this software is available publically. You are free to modify the source code and then redistribute the modified source code. You are allowed to make and distribute executable binaries of the modified or original source code. However, the modified source code/ binaries of modified code/ binaries not compiled by author(s) of the software must not be represented as the original software and be plainly marked as such. 
+2. You are free to use the software for any educational, personal and commercial purposes without charge.
+3. You are allowed to develop software based on Sandpiper Library(or this software) or its source code. You are free to incorporate any components/ code of this software into your own software or work. This shall be your own work and you shall own the copyright to this work. Sandpiper Library or its author(s) are not responsible for any part or whole of this software. You are free to distribute the software you have created under any license or no license at all, with or without charge.
+4. You can make an unlimited number of copies of this software and/or its source code.
+5. You are free to distribute copies of this software.
+6. You are allowed to use Sandpiper Library or its source code (with or without modification) as a part of a larger software that you have created. However, in this case, Sandpiper Library should not be the primary component the software.
+                
+                
+                
+THE software IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHOR(S) OR COPYRIGHT HOLDER(S) BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE software OR THE USE OR OTHER DEALINGS IN THE software.
+                
+Feel free to contact the author(s) of Sandpiper Library if you have any doubt regarding the license.
+---END OF LICENSE---
+                
+Thanks for reading the license! Enjoy using Sandpiper Library!
+            

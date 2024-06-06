@@ -4,7 +4,7 @@
 <h2>Results</h2>
 {% if page == "library" %}
 <div>
-  <h3>Search for books</h3>
+    <h3>Search for books (by name, author or id)</h3>
     <form action = "/search" method = "get">
       <input type="hidden" value="library" name="page">
         <input class = "search" required type="search" name="title" placeholder="Query" />
@@ -40,7 +40,7 @@
 
 {% elif page == "members" %}
 <div>
-  <h3>Search for books</h3>
+  <h3>Search for members (by name, id or date of joining)</h3>
     <form action = "/search" method = "GET">
       <input type="hidden" value="members" name="page">
         <input class = "search" required type="search" name="title" placeholder="Query" />

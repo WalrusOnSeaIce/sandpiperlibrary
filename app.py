@@ -30,7 +30,7 @@ def search():
             rec.append(x)
         return render_template("search.html", title=rec, page=page)
     elif page == "members":
-        title = cur.execute("SELECT * FROM members WHERE id LIKE ? OR name LIKE ?", (("%" + request.args.get("title") + "%"),("%" + request.args.get("title") + "%")))
+        title = cur.execute("SELECT * FROM members WHERE id LIKE ? OR name LIKE ? OR dateofjoining LIKE ?", (("%" + request.args.get("title") + "%"),("%" + request.args.get("title") + "%"), ("%" + request.args.get("title") + "%")))
         rec = []
         for x in title:
             rec.append(x)

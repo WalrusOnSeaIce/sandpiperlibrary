@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, redirect
+from flaskwebgui import FlaskUI
 import sqlite3
 from datetime import datetime
 from os import remove
@@ -7,6 +8,8 @@ db = sqlite3.connect("data.db", check_same_thread=False)
 cur = db.cursor()
 
 app = Flask(__name__)
+
+ui = FlaskUI(app=app,server='flask', width=1000, height=700)
 
 osdate = datetime.now().strftime("%Y-%m-%d")
 GENRE = []
@@ -281,4 +284,5 @@ def issuedbooks():
     return render_template("issuedbooks.html", rec = rec)
 
 if __name__ == '__main__':
-    app.run(port=5000)
+    #app.run(port=5000)
+    ui.run()

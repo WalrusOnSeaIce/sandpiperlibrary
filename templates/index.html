@@ -1,20 +1,20 @@
 {% extends "layout.html" %}
 
-<link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}" type="text/css"/>
+
 {% block body %}
 <h2>Issue Book</h2>
-	<form action = "/issue" method = "post" enctype="multipart/form-data">
-		<input required type="text" name="member_id" placeholder="Member ID" />
-		<input required type="text" name="book_id" placeholder="Book ID" /><br>
-		<label for="doi">Date of Issue: </label><input required type="date" name="doi" placeholder="Date Of Issue" value = "{{ date }}" />
-		<label for="dor">   Date of return: </label><input required type="date" name="dor" placeholder="Date Of Return" />
+	<form action = "/issue" method = "post" enctype="multipart/form-data" id="issuebookform">
+		<input required type="text" name="member_id" placeholder="Member ID" id="mid"/>
+		<input required type="text" name="book_id" placeholder="Book ID" id="bid"/><br>
+		<label id="doilabel" for="doi">Date of Issue: </label><input id="doi" required type="date" name="doi" placeholder="Date Of Issue" value = "{{ date }}" />
+		<label id="dorlabel" for="dor">Date of return: </label><input id="dor" required type="date" name="dor" placeholder="Date Of Return" />
     	<input class = "hsubmit" type="submit" name="submit" value="Issue" />
 	</form>
 	<h2>Add a new book</h2>
-	<form action = "/add" method = "post">
-		<input required placeholder = "Book" name = "book" type = "text" autocomplete = "off" />
-		<input required placeholder = "Author" name = "author" type = "text" autocomplete = "off" />
-		<select name = "genre">
+	<form action = "/add" method = "post" id="newbookform">
+		<input id="bookname" required placeholder = "Book" name = "book" type = "text" autocomplete = "off" />
+		<input id="authorname" required placeholder = "Author" name = "author" type = "text" autocomplete = "off" />
+		<select id="genre" name = "genre">
 			<option disabled selected>Genre</option>
 			{% for i in genres %}
 				<option value = "{{ i }}">{{ i }}</option>
@@ -24,17 +24,17 @@
 	</form>
 
 	<h2>Search for books</h2>
-	<form action = "/search" method = "get">
+	<form action = "/search" method = "get" id="searchform">
 		<input type="hidden" value="library" name="page">
-    	<input required type="search" name="title" placeholder="Query" />
+    	<input id="title" required type="search" name="title" placeholder="Query" />
     	<input class = "hsubmit" type="submit" name="submit" value="Search" />
 	</form>
 
 	<h2>Add Member</h2>
-	<form action = "/addmember" method = "post" enctype="multipart/form-data">
-		<input required type="text" name="name" placeholder="Name" />
-		<label for="doj">Date of joining: </label><input required type="date" name="doj" placeholder="Date Of Joining" value = "{{ date }}" /><br>
-		<label for="photo">Profile photo: </label><input type="file" name="photo">
+	<form action = "/addmember" method = "post" enctype="multipart/form-data" id="addmemberform">
+		<input id="mname" required type="text" name="name" placeholder="Name" />
+		<label id="mdoj" for="doj">Date of joining: </label><input id="doj" required type="date" name="doj" placeholder="Date Of Joining" value = "{{ date }}" /><br>
+		<label id="photolabel" for="photo">Profile photo: </label><input id="photo" type="file" name="photo">
     	<input class = "hsubmit" type="submit" name="submit" value="Add" />
 	</form>
 

@@ -47,7 +47,7 @@ section > div {
     padding-left: 10px;
 }
 #filter {width: 80%;}
-.hsubmit{width: 20% !important;}
+.hsubmit{width: 250px !important;}
 .search{width: 70% !important;}
 option {
     background-color: #C4AE78;

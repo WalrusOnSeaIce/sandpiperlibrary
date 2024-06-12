@@ -22,22 +22,34 @@
 			setInterval(keep_alive_server, interval_request)()
 		})
 	</script>
-	<title>Library</title>
+	<title>Sandpiper Library</title>
 	<meta name = "viewport" content = "width=device-width, initial-scale=1.0" />
 	<meta charset = "utf-8" />
-	<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" type="text/css" />
-	<link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}" type="text/css" />
-	<link rel="stylesheet" href="{{ url_for('static', filename='library.css') }}" type="text/css" />
+	{% if theme == "default" %}
+		<link rel="stylesheet" href="{{ url_for('static', filename='fallback/style.css') }}" type="text/css" />
+		<link rel="stylesheet" href="{{ url_for('static', filename='fallback/home.css') }}" type="text/css" />
+		<link rel="stylesheet" href="{{ url_for('static', filename='fallback/library.css') }}" type="text/css" />
+	{% elif theme != "default" %}
+		{% for x in theme %}
+			<link rel="stylesheet" href="{{ x }}" type="text/css" />
+		{% endfor %}
+	{% else %}
+		<link rel="stylesheet" href="{{ url_for('static', filename='fallback/style.css') }}" type="text/css" />
+		<link rel="stylesheet" href="{{ url_for('static', filename='fallback/home.css') }}" type="text/css" />
+		<link rel="stylesheet" href="{{ url_for('static', filename='fallback/library.css') }}" type="text/css" />
+	{% endif %}
 </head>
 <body>
 	<header>
-		<div class="logo">Personal Library</div>
+		<div class="logo">Sandpiper  Library</div>
 		<div class="right">
 			<a href="./">Home</a>
 			<a href="./issuedbooks">Issued Books</a>
 			<a href="./library">Library</a>
 			<a href="./members">Members</a>
 			<a href="./genres">Genres</a>
+			<a href="./impexp">Import/ Export Data</a>
+			<a href="./settings">Settings</a>
 		</div>
 	</header>
 	<br />

@@ -1,6 +1,4 @@
-body{
-    margin:0;
-}
+/*header styling*/
 header{
     overflow: hidden;
     padding: 20px 20px;
@@ -22,6 +20,7 @@ header > div > a {
  header > div > a:hover{
     color: #F9F6F0 !important;
     background-color: #C4AE78;}
+
 input[type=submit]:hover{
     opacity: 0.8;
     cursor: pointer;

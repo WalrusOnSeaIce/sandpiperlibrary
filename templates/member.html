@@ -2,16 +2,16 @@
 {% block body %}
 <h2>Member Information</h2>
 <section>
-    <form action="/updatemember" method="POST" style="padding: 20px;" enctype="multipart/form-data">
+    <form action="/updatemember" method="POST" enctype="multipart/form-data" id="updatememberform">
         <input name="id" type="hidden" value="{{ member[0] }}">
-        <label for="id">ID: </label><span>{{ member[0] }}</span><br>
-        <label for="name">Name: </label><input required name="name" type="text" value="{{ member[1] }}"><br>
-        <label for="photo">Photo: </label><img src="{{ member[3] }}" height="70px" width="70px"><input name="photo" type="file"><br><br>
-        <label for="doj">Date Of Joining: </label><span>{{ member[2] }}</span><br>
-        <label for="book1" style="margin-top: 6px;">Book 1: </label><span>{{ member[4] }}</span><br>
-        <label for="book2">Book 2: </label><span>{{ member[5] }}</span><br>
+        <label id="idlabel" for="id">ID: </label><span id="id">{{ member[0] }}</span><br>
+        <label id="namelabel" for="name">Name: </label><input id="name" required name="name" type="text" value="{{ member[1] }}"><br>
+        <label id="photolabel" for="photo">Photo: </label><img src="{{ member[3] }}" height="70px" width="70px"><input id="photo" name="photo" type="file"><br><br>
+        <label id="dojlabel" for="doj">Date Of Joining: </label><span id="doj">{{ member[2] }}</span><br>
+        <label for="book1" id="book1label">Book 1: </label><span id="book1">{{ member[4] }}(Book ID)</span><br>
+        <label for="book2" id="book2label">Book 2: </label><span id="book2">{{ member[5] }}(Book ID)</span><br>
         <br>
-        <input type="submit" value="Update Information" style="width: 50% !important; background-color: #6F5B3E; color: #F9F6F0; border: 2px solid #6F5B3E; margin: 10px; padding: 10px; cursor: pointer;">
+        <input class="hsubmit" type="submit" value="Update Information">
     </form>
 </section>
 

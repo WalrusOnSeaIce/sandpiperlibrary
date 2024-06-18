@@ -16,3 +16,6 @@ CREATE TABLE genres (sno INTEGER, genre TEXT NOT NULL, PRIMARY KEY(sno));
 CREATE TABLE members (id INTEGER, name TEXT NOT NULL, dateofjoining DATE NOT NULL, photo TEXT, book1 TEXT, book2 TEXT, PRIMARY KEY(id));
 CREATE TABLE issuedbooks (id INTEGER, book TEXT NOT NULL, memberid TEXT NOT NULL, member TEXT NOT NULL, doi DATE NOT NULL, dor DATE NOT NULL);
 CREATE TABLE preferences (id INTEGER, option TEXT, preference TEXT, PRIMARY KEY(id));
+
+# installer creation command
+pyinstaller -w -F --add-data "templates;templates" --add-data "static;static" --add-data "db;db" --add-data "themes;themes" --add-data "images;images" --add-data "import;import" --onefile --icon "icon-path" app.py

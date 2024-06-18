@@ -7,7 +7,7 @@ from shutil import rmtree
 from zipfile import ZipFile
 import pickle
 
-db = sqlite3.connect("data.db", check_same_thread=False)
+db = sqlite3.connect("db/data.db", check_same_thread=False)
 cur = db.cursor()
 
 app = Flask(__name__)
@@ -22,9 +22,9 @@ cur.execute("SELECT preference FROM preferences WHERE id = 1")
 theme = cur.fetchone()[0]
 if theme != "default":
     final = []
-    urls = listdir('static/themes/'+theme)
+    urls = listdir('themes/'+theme)
     for x in urls:
-        url = 'static/themes/' + theme + '/' + x
+        url = 'themes/' + theme + '/' + x
         final.append(url)
     theme=final
 print(theme)
@@ -109,9 +109,10 @@ def update():
         db.commit()
         cur.execute("SELECT * FROM library WHERE id = ?", (ident1,))
         rec = cur.fetchone()
-        cur.execute("SELECT memberid FROM issuedbooks WHERE id = ?",(id,))
+        cur.execute("SELECT memberid FROM issuedbooks WHERE id = ?",(str(id),))
         mid = cur.fetchone()
-    return render_template("/book.html", book=rec, mid=mid, theme=theme)
+        print(mid)
+    return render_template("/book.html", book=rec, theme=theme, mid=mid)
 
 @app.route("/genres")
 def genre():
@@ -167,7 +168,7 @@ def updatebook():
     db.commit()
     cur.execute("SELECT * FROM library where id = ?",(id,))
     rec = cur.fetchone()
-    cur.execute("SELECT memberid FROM issuedbooks WHERE id = ?",(id,))
+    cur.execute("SELECT memberid FROM issuedbooks WHERE id = ?",(str(id),))
     mid = cur.fetchone()
     return render_template("book.html", book=rec, genres=GENRE, mid=mid, theme=theme)
 
@@ -185,7 +186,7 @@ def members():
         rec2.append(k)
     for x in rec2:
         if x[3] != None:
-            x[3] = 'static/images/'+x[3]
+            x[3] = 'images/'+x[3]
         mem.append(x)
     return render_template("members.html", mem=mem, theme=theme)
 
@@ -194,11 +195,11 @@ def members():
 def addmember():
     date = request.form.get("doj")
     name =  request.form.get("name")
-    photo = request.files['photo']
-    if not photo:
-        cur.execute("INSERT INTO members (name, dateofjoining) VALUES(?, ?)", (name, date))
-        db.commit()
-    else:
+    #photo = request.files['photo']
+    #if not photo:
+    cur.execute("INSERT INTO members (name, dateofjoining) VALUES(?, ?)", (name, date))
+    db.commit()
+    '''else:
         cur.execute("SELECT id FROM members ORDER BY id DESC LIMIT 1")
         rec = cur.fetchone()
         no = None
@@ -212,9 +213,9 @@ def addmember():
             newName = "1" + "." + y[-1]
         else:
             newName = str(no) + "." + y[-1]
-        photo.save("static/images/"+newName)
+        photo.save("images/"+newName)
         cur.execute("INSERT INTO members (name, dateofjoining, photo) VALUES(?, ?, ?)", (name, date, newName))
-        db.commit()
+        db.commit()'''
     return redirect("/members")
 
 @app.route("/delmember", methods=["POST"])
@@ -228,7 +229,7 @@ def delmemeber():
     db.commit()
     if rec[3] != None:
         try:
-            path = 'static/images/' + rec[3]
+            path = 'images/' + rec[3]
             remove(path)
         except FileNotFoundError:
             pass
@@ -243,29 +244,27 @@ def member():
     for x in rec:
         mem.append(x)
     if mem[3] != None:
-            mem[3] = 'static/images/'+mem[3]
+            mem[3] = 'images/'+mem[3]
     return render_template("member.html", member = mem, theme=theme)
 
 @app.route("/updatemember", methods = ["POST"])
 def updatemember():
     id = request.form.get("id")
     name = request.form.get("name")
-    photo = request.files['photo']
-    cur.execute("SELECT * FROM members WHERE id = ?", (id,))
-    rec = cur.fetchone()
-    if not photo:
-        cur.execute("UPDATE members SET name = ? WHERE id = ?", (name, id))
-        db.commit()
-    else:
+    #photo = request.files['photo']
+    #if not photo:
+    cur.execute("UPDATE members SET name = ? WHERE id = ?", (name, id))
+    db.commit()
+    '''else:
         id =  rec[0]
         x = photo.filename
         y = x.split(".")
         newName = str(id)+"."+y[-1]
         try:
-            remove("static/images/"+rec[3])
+            remove("images/"+rec[3])
         except:
             pass
-        photo.save("static/images/"+newName)
+        photo.save("images/"+newName)
         cur.execute("UPDATE members SET name = ?, photo = ? WHERE id = ?", (name, newName, id))
         db.commit()
     cur.execute("SELECT * FROM members WHERE id = ?", (id,))
@@ -274,8 +273,10 @@ def updatemember():
     for x in rec:
         mem.append(x)
     if mem[3] != None:
-            mem[3] = 'static/images/'+mem[3]
-    return render_template("member.html", member = mem, theme=theme)
+            mem[3] = 'images/'+mem[3]'''
+    cur.execute("SELECT * FROM members WHERE id = ?", (id,))
+    rec = cur.fetchone()
+    return render_template("member.html", theme=theme, member=rec)
 
 @app.route("/issue", methods = ["POST"])
 def issue():
@@ -298,14 +299,14 @@ def issue():
         cur.execute("UPDATE library SET lent = 'Yes' WHERE id= ?;", (bid,))
         cur.execute("INSERT INTO issuedbooks (id, book, memberid, member, doi, dor) VALUES(?, ?, ?, ?, ?, ?)", (bid, rec2[1], mid, rec[2], doi, dor))
         db.commit()
-        cur.execute("SELECT memberid FROM issuedbooks WHERE id = ?",(mid,))
+        cur.execute("SELECT memberid FROM issuedbooks WHERE id = ?",(str(mid),))
         mid = cur.fetchone()
         return render_template("book.html", book=rec2, theme=theme, genres=GENRE, mid=mid)
     elif rec[5] == None:
         cur.execute("UPDATE members SET book2 = ? WHERE id = ?", (bid,mid))
         cur.execute("UPDATE library SET lent = 'Yes' WHERE id= ?;", (bid,))
         db.commit()
-        cur.execute("SELECT memberid FROM issuedbooks WHERE id = ?",(mid,))
+        cur.execute("SELECT memberid FROM issuedbooks WHERE id = ?",(str(mid),))
         mid = cur.fetchone()
         return render_template("book.html", theme=theme, book=rec2, genres=GENRE, mid=mid)
     if rec[4] != None and rec[5] != None:
@@ -321,7 +322,8 @@ def issuedbooks():
 @app.route("/impexp")
 def impexp():
     if path.exists("export.zip"):
-        return render_template("impexp.html", file=True, theme=theme)
+        exportpath = path.abspath("export.zip")
+        return render_template("impexp.html", file=True, theme=theme, exportpath=exportpath)
     else:
         return render_template("impexp.html", file=False, theme=theme)
 
@@ -385,9 +387,9 @@ def exportd():
     members = cur.fetchall()
     data = [library, genres, issuedbooks, members]
     files = ["import/library.zip", "import/genres.zip", "import/issuedbooks.zip", "import/members.zip"]
-    imgs = listdir("static/images")
+    imgs = listdir("images")
     for x in imgs:
-        y = 'static/images/' + x
+        y = 'images/' + x
         imgs.remove(x)
         imgs.append(y)
     files.extend(imgs)
@@ -415,7 +417,7 @@ def deletefile():
 
 @app.route("/settings")
 def settings():
-    themes = listdir("static/themes")
+    themes = listdir("themes")
     cur.execute("SELECT preference FROM preferences WHERE id = 1")
     sel = cur.fetchone()[0]
     return render_template("settings.html", themes=themes, sel=sel, theme=theme)
@@ -426,7 +428,7 @@ def updatesettings():
     if xtheme:
         cur.execute("UPDATE preferences SET preference = ? WHERE id = 1", (xtheme,))
         db.commit()
-        themes = listdir("static/themes")
+        themes = listdir("themes")
         cur.execute("SELECT preference FROM preferences WHERE id = 1")
         sel = cur.fetchone()[0]
         return render_template("settings.html", themes=themes, sel=sel, theme=theme)
@@ -439,7 +441,7 @@ def addtheme():
         return render_template("error.html", theme=theme, message="Wrong file provided! Try again. Only .zip files allowed.")
     xtheme.save(xtheme.filename)
     with ZipFile(xtheme.filename, "r") as ff:
-        ff.extractall('static/themes/')
+        ff.extractall('themes/')
     remove(xtheme.filename)
     return redirect("/settings")
     
@@ -456,7 +458,7 @@ def deltheme():
         if xtheme == sel:
             cur.execute("UPDATE preferences SET preference = 'default' WHERE id = 1")
             db.commit()
-        rmtree('static/themes/'+xtheme)
+        rmtree('themes/'+xtheme)
         return redirect("/settings")
     return render_template("error.html", message="Select valid theme!", theme=theme)
     

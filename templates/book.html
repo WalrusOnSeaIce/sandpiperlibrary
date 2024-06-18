@@ -9,7 +9,7 @@
         <label id="nameid" for="name">Name: </label><input id="id" name="book" type="text" value="{{ book[1] }}"><br>
         <label id="authorlabel" for="author">Author: </label><input id="author" name="author" type="text" value="{{ book[2] }}"><br>
         <label id="genrelabel" for="genre">Genre: </label><select id="genre" name = "genre">
-			<option disabled selected>{{ book[3] }}</option>
+			<option selected value="{{ book[3] }}">{{ book[3] }}</option>
 			{% for i in genres %}
 				<option value = "{{ i }}">{{ i }}</option>
 			{% endfor %}

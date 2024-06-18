@@ -25,6 +25,7 @@
 	<title>Sandpiper Library</title>
 	<meta name = "viewport" content = "width=device-width, initial-scale=1.0" />
 	<meta charset = "utf-8" />
+	<link rel="shortcut icon" href="{{ url_for('static', filename='LogoTransparent.ico')}}" type="image/x-icon">
 	{% if theme == "default" %}
 		<link rel="stylesheet" href="{{ url_for('static', filename='fallback/style.css') }}" type="text/css" />
 		<link rel="stylesheet" href="{{ url_for('static', filename='fallback/home.css') }}" type="text/css" />
@@ -41,7 +42,8 @@
 </head>
 <body>
 	<header>
-		<div class="logo">Sandpiper  Library</div>
+		<div class="logo">
+			<img src="{{ url_for('static', filename='LogoBackground.svg')}}" width="100px" height="100px" alt="Logo"><span>Sandpiper Library</span></div>
 		<div class="right">
 			<a href="./">Home</a>
 			<a href="./issuedbooks">Issued Books</a>
@@ -49,7 +51,7 @@
 			<a href="./members">Members</a>
 			<a href="./genres">Genres</a>
 			<a href="./impexp">Import/ Export Data</a>
-			<a href="./settings">Settings</a>
+			<!--<a href="./settings">Settings</a>-->
 		</div>
 	</header>
 	<br />

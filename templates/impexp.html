@@ -20,8 +20,9 @@
     <tbody>
         <tr>
             <td>export.zip- Last export</td>
-            <td><p></p><a href="./download">Download</a></p>
-            <p><a href="./deletefile">Delete File</a></p></td>
+            <!--<td><p></p><a href="{{ exportpath }}" download>Download</a></p>-->
+            <td><p><a href="./deletefile">Delete File</a></p>
+            <span>File path: </span>{{ exportpath }}</a> Navigate to this path to get the export file and copy it to another location.</td>
         </tr>
     </tbody>
 </table>

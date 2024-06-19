@@ -7,8 +7,14 @@ from shutil import rmtree
 from zipfile import ZipFile
 import pickle
 
-db = sqlite3.connect("db/data.db", check_same_thread=False)
+db = sqlite3.connect("data.db", check_same_thread=False)
 cur = db.cursor()
+
+makedirs("import", exist_ok=True)
+
+makedirs("themes", exist_ok=True)
+
+makedirs("images", exist_ok=True)
 
 app = Flask(__name__)
 
@@ -95,6 +101,7 @@ def delete():
     if ident:
         cur.execute("DELETE FROM library WHERE id = ?", (ident,))
         cur.execute("DELETE FROM issuedbooks WHERE id = ?", (ident,))
+        cur.execute("UPDATE members SET book1 = (CASE WHEN book1 = ? THEN null END), book2 = (CASE WHEN book2 = ? THEN null END)", (ident,ident))
         db.commit()
     return redirect("/library")
 
@@ -111,7 +118,6 @@ def update():
         rec = cur.fetchone()
         cur.execute("SELECT memberid FROM issuedbooks WHERE id = ?",(str(id),))
         mid = cur.fetchone()
-        print(mid)
     return render_template("/book.html", book=rec, theme=theme, mid=mid)
 
 @app.route("/genres")
@@ -148,7 +154,7 @@ def book():
     rec = None
     for x in info:
         rec = x
-    cur.execute("SELECT memberid FROM issuedbooks WHERE id = ?",(id,))
+    cur.execute("SELECT memberid FROM issuedbooks WHERE id = ?",(str(id),))
     mid = cur.fetchone()
     return render_template("book.html", book = rec, genres=GENRE, mid=mid, theme=theme)
 
@@ -301,6 +307,8 @@ def issue():
         db.commit()
         cur.execute("SELECT memberid FROM issuedbooks WHERE id = ?",(str(mid),))
         mid = cur.fetchone()
+        cur.execute("SELECT * FROM library WHERE id = ?", (bid,))
+        rec2 = cur.fetchone()
         return render_template("book.html", book=rec2, theme=theme, genres=GENRE, mid=mid)
     elif rec[5] == None:
         cur.execute("UPDATE members SET book2 = ? WHERE id = ?", (bid,mid))
@@ -308,6 +316,8 @@ def issue():
         db.commit()
         cur.execute("SELECT memberid FROM issuedbooks WHERE id = ?",(str(mid),))
         mid = cur.fetchone()
+        cur.execute("SELECT * FROM library WHERE id = ?", (bid,))
+        rec2 = cur.fetchone()
         return render_template("book.html", theme=theme, book=rec2, genres=GENRE, mid=mid)
     if rec[4] != None and rec[5] != None:
         return render_template("error.html", theme=theme, message="Book can not be issued. Issue limit for member reached!")

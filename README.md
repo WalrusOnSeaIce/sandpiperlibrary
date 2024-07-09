@@ -4,11 +4,14 @@ It is a webapp/ software that can be used to manage personal library or a collec
 It has features like adding and deleting books, adding and deleting members, issuing books to members, managing book returns from members(through Change status option), updating information about books and members and searching through the list of members and books by id, name, author etc.
 You can add and change profile photos of the members and even see a list of the issued books. The app is easy to use.
 
+# design behind the app
 The app has been written in Flask, HTML and CSS, and uses an SQLite database.
 
+# freedom
+The generator can be used for free and be modified according to the needs of the users as per the license.
 
-# compiling the app
-pyinstaller -w -F --add-data "templates;templates" --add-data "static;static" app.py
+# license
+The app is distributed under the Checky license.
 
 # db schema
 CREATE TABLE library (id INTEGER, book TEXT NOT NULL, author TEXT NOT NULL, genre TEXT, lent TEXT NOT NULL, summary TEXT, addlinfo TEXT, PRIMARY KEY(id));
